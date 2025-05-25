@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:focus_app/components/left_side_button_collapsed.dart';
+import 'package:focus_app/components/right_side.dart';
 import 'package:provider/provider.dart';  // Add this import
 import 'package:focus_app/themes/theme_provider.dart';
 import 'package:focus_app/components/left_side_button.dart';
-
 
 void main() {
   runApp(
@@ -39,7 +39,6 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
 
-
   final String title;
 
   @override
@@ -56,6 +55,8 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  final rightside= RightSide();
+
 
   @override
   Widget build(BuildContext context) {
@@ -63,6 +64,12 @@ class _MyHomePageState extends State<MyHomePage> {
       body: LayoutBuilder(
         builder: (context, constraints) {
           // Check if window width is less than 600 pixels
+
+
+          if (constraints.maxWidth < 664) {
+            return rightside;
+          }
+
           if (constraints.maxWidth < 1077) {
             // Return mobile/compact layout
             return Row(
@@ -119,49 +126,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ],
                 ),
               ),
-              Expanded(
-                child: Container(
-                  padding: const EdgeInsets.fromLTRB(32, 14.4, 32, 51.2),
-                  
-                  color: const Color.fromRGBO(39, 39, 39, 1),
-                  child: Row (
-                    children: [
-                      Column(
-                         children: [
-                            Container(
-                          decoration: BoxDecoration(
-                            color: const Color.fromRGBO(50, 50, 50, 1),
-                            borderRadius: BorderRadius.circular(12), // Adjust the radius value as needed
-                          ),
-                          width: 448,
-                          height: 422.4,
-                          padding: const EdgeInsets.all(16),
-                          child: Column(
-                            children:[ Text(
-                              'Get ready to focus',
-                              style: TextStyle(
-                                color: const Color.fromRGBO(255, 255, 255, 1),
-                                fontSize: 24,
-                              ),
-                            ),
-                            SizedBox(height: 4),
-                            Text(
-                              "We'll turn off notifications and app alerts during each session. For longer sessions, we'll add a short break so you can recharge.",
-                              style: TextStyle(
-                                color: const Color.fromRGBO(185, 185, 185, 1),
-                                fontSize: 14,
-                              ),
-                            ),
-                            ]
-                          ),
-                        )
-                          ],
-                      ),
-
-                    ],
-                  ),
-                ),
-              ),
+              rightside,
             ],
           );
         },
