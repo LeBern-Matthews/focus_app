@@ -3,10 +3,13 @@ import 'package:flutter/material.dart';
 class RightSidecontainer extends StatelessWidget {
   final List<Widget> childList;
   final double height;
+  final double width;  // Changed to final
+  
   const RightSidecontainer({
     super.key,
     required this.childList,
     required this.height,
+    this.width = 448,  // Optional parameter with default value
   });
 
   @override
@@ -16,13 +19,12 @@ class RightSidecontainer extends StatelessWidget {
         color: const Color.fromRGBO(50, 50, 50, 1),
         borderRadius: BorderRadius.circular(10),
       ),
-      width: 448,
+      width: width,
       height: height,
       padding: const EdgeInsets.all(16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: childList
-        ,
+        children: childList,
       ),
     );
   }

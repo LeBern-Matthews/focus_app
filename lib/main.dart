@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:focus_app/components/left_side.dart';
 import 'package:focus_app/components/left_side_button_collapsed.dart';
 import 'package:focus_app/components/right_side.dart';
-import 'package:provider/provider.dart';  // Add this import
+import 'package:provider/provider.dart'; 
 import 'package:focus_app/themes/theme_provider.dart';
-import 'package:focus_app/components/left_side_button.dart';
+
 
 void main() {
   runApp(
@@ -55,9 +56,6 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  final rightside= RightSide();
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,9 +63,28 @@ class _MyHomePageState extends State<MyHomePage> {
         builder: (context, constraints) {
           // Check if window width is less than 600 pixels
 
-
+          if (constraints.maxWidth<=320){
+            return Container(
+              color: const Color.fromRGBO(39, 39, 39, 1),
+              width: double.infinity,
+              height: double.infinity,
+              child: RightSide(
+                isVertical: true, 
+                isFlexible: false
+              ),
+            );
+          }
+          
           if (constraints.maxWidth < 664) {
-            return rightside;
+            return Container(
+              color: const Color.fromRGBO(39, 39, 39, 1),
+              width: double.infinity,
+              height: double.infinity,
+              child: RightSide(
+                isVertical: true, 
+                isFlexible: true,
+              ),
+            );
           }
 
           if (constraints.maxWidth < 1077) {
@@ -104,30 +121,17 @@ class _MyHomePageState extends State<MyHomePage> {
           );
           }
 
+          if (constraints.maxWidth < 1256) {
+            //return RightSide(isVertical: false, isFlexible: true,);
+
+            return LeftSide(rightSide: RightSide(isVertical: false, isFlexible: true,), count: _counter, incrementCounter: () {  },);
+
+            }
+          
           // Return default desktop layout
-          return Row(
-            children: [
-              Container(
-                padding: const EdgeInsets.all(4),
-                width: 280,
-                color: const Color.fromRGBO(32, 32, 32, 1),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Leftsidebutton(onPressed: _incrementCounter, text: "Focus periods", icon: Icons.auto_mode_rounded),
-                    const SizedBox(height: 20),
-                    Leftsidebutton(onPressed: _incrementCounter, text: "$_counter", icon: Icons.add_box_rounded),
-                    Spacer(),
-                    Leftsidebutton(
-                      onPressed: _incrementCounter,
-                      text: 'Settings',
-                      icon: Icons.settings,
-                    ),
-                  ],
-                ),
-              ),
-              rightside,
-            ],
+          return LeftSide(
+            rightSide: RightSide(isVertical: false, isFlexible: false,),
+            count: _counter, incrementCounter: () {  },
           );
         },
       ),
