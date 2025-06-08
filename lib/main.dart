@@ -4,9 +4,18 @@ import 'package:focus_app/components/left_side_button_collapsed.dart';
 import 'package:focus_app/components/right_side.dart';
 import 'package:provider/provider.dart'; 
 import 'package:focus_app/themes/theme_provider.dart';
-
+import 'dart:io';
+import 'package:window_size/window_size.dart';
 
 void main() {
+    WidgetsFlutterBinding.ensureInitialized();
+     if (Platform.isWindows){
+       //setWindowMaxSize(const Size(max_width, max_height)); // Optional: set maximum size
+       const double minWidth = 416;
+       const double minHeight = 630;
+       setWindowMinSize(const Size(minWidth, minHeight)); // Set minimum size
+     }
+     
   runApp(
   
     ChangeNotifierProvider(
@@ -48,6 +57,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  bool vertical=false; 
 
   void _incrementCounter() {// dart will bitch if you don't use this method
     setState(() {
@@ -61,20 +71,13 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       body: LayoutBuilder(
         builder: (context, constraints) {
-          // Check if window width is less than 600 pixels
-
-          if (constraints.maxWidth<=320){
-            return Container(
-              color: const Color.fromRGBO(39, 39, 39, 1),
-              width: double.infinity,
-              height: double.infinity,
-              child: RightSide(
-                isVertical: true, 
-                isFlexible: false
-              ),
-            );
-          }
           
+          // check if the height is less than the height 1020
+          if (constraints.maxHeight<1020){
+            vertical=true;
+          }
+
+          // Check if window width is less than 600 pixels
           if (constraints.maxWidth < 664) {
             return Container(
               color: const Color.fromRGBO(39, 39, 39, 1),
