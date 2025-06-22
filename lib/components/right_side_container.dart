@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class RightSidecontainer extends StatelessWidget {
   final List<Widget> childList;
   final double height;
-  final double width;  // Changed to final
+  final double width;
   
   const RightSidecontainer({
     super.key,

@@ -6,20 +6,19 @@ import 'package:focus_app/components/right_side_containers_single/music.dart';
 
 
 class RightSide extends StatelessWidget {
-  final bool isVertical;
-  final bool isFlexible;
   final bool vertical;
+  final String mode;
 
   const RightSide({
     super.key,
-    required this.isVertical,
-    required this.isFlexible,
     this.vertical=false,
+    required this.mode,
   });
 
   @override
   Widget build(BuildContext context) {
-  if (isVertical && isFlexible) {
+  if (mode=="small") {
+    // small layout which always has a vertical scroll bar
     return Container(
       color: const Color.fromRGBO(39, 39, 39, 1),
       child: SingleChildScrollView(
@@ -42,7 +41,8 @@ class RightSide extends StatelessWidget {
       );
     }
 
-    if (isVertical==false && isFlexible){
+    if (mode=="flexDefault"){
+      // the flexible version of the default 
       return Expanded(
         child: Container(
                     padding: const EdgeInsets.fromLTRB(32, 14.4, 32, 51.2),

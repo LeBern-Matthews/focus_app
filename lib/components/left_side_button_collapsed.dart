@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class LeftSideButtonCollapsed extends StatelessWidget {
+class LeftSideButtonCollapsed extends StatelessWidget {// The collapsed version of the left side buttons, replaces the buttons with the 
   final VoidCallback onPressed; // Define the callback function type
   final IconData icon;
   const LeftSideButtonCollapsed({

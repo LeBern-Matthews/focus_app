@@ -6,12 +6,14 @@ class LeftSide extends StatelessWidget {
   final RightSide rightSide;
   final int count;
   final VoidCallback  incrementCounter;
+  final double width;
 
   const LeftSide({
     super.key,
     required this.rightSide,
     required this.count,
     required this.incrementCounter,
+    this.width = 280,  // Optional parameter with default value
   });
 
   @override
@@ -20,7 +22,7 @@ class LeftSide extends StatelessWidget {
             children: [
               Container(
                 padding: const EdgeInsets.all(4),
-                width: 280,
+                width: width,
                 color: const Color.fromRGBO(32, 32, 32, 1),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,

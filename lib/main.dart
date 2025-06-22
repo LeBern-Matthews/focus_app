@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'dart:io';
 import 'package:focus_app/components/left_side.dart';
-import 'package:focus_app/components/left_side_button_collapsed.dart';
 import 'package:focus_app/components/right_side.dart';
+import 'package:focus_app/components/left_side_button_collapsed.dart';
 import 'package:provider/provider.dart'; 
 import 'package:focus_app/themes/theme_provider.dart';
-import 'dart:io';
 import 'package:window_size/window_size.dart';
 
 void main() {
@@ -23,8 +23,7 @@ void main() {
       child: const MyApp(),
     ),
   );
-
-}
+} // end of main function
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -79,19 +78,19 @@ class _MyHomePageState extends State<MyHomePage> {
 
           // Check if window width is less than 600 pixels
           if (constraints.maxWidth < 664) {
+            // return the smallest layout
+
             return Container(
               color: const Color.fromRGBO(39, 39, 39, 1),
               width: double.infinity,
               height: double.infinity,
-              child: RightSide(
-                isVertical: true, 
-                isFlexible: true,
+              child: RightSide(mode: "small"
               ),
             );
           }
 
           if (constraints.maxWidth < 1077) {
-            // Return mobile/compact layout
+            // Return compact layout
             return Row(
             children: [
               Container(
@@ -124,16 +123,23 @@ class _MyHomePageState extends State<MyHomePage> {
           );
           }
 
+          switch (_counter) {
+            case 1: 
+          }
+
           if (constraints.maxWidth < 1256) {
             //return RightSide(isVertical: false, isFlexible: true,);
+            // return flexible version of the default layout
 
-            return LeftSide(rightSide: RightSide(isVertical: false, isFlexible: true,), count: _counter, incrementCounter: () {  },);
-
-            }
+            return LeftSide(count: _counter, incrementCounter: () {  },
+            rightSide: RightSide(mode: "flexDefault"
+              ), 
+            );
+          }
           
           // Return default desktop layout
           return LeftSide(
-            rightSide: RightSide(isVertical: false, isFlexible: false,),
+            rightSide: RightSide(mode:""),
             count: _counter, incrementCounter: () {  },
           );
         },
