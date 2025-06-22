@@ -41,6 +41,17 @@ class RightSide extends StatelessWidget {
       );
     }
 
+  if (mode=="compact"){
+      return Expanded(
+                child: Container(
+                  color: const Color.fromRGBO(39, 39, 39, 1),
+                  child: const Center(
+                    child: Text('Change'),
+                  ),
+                ),
+              );
+  }
+
     if (mode=="flexDefault"){
       // the flexible version of the default 
       return Expanded(

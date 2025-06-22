@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:focus_app/components/left_side.dart';
 import 'package:focus_app/components/right_side.dart';
-import 'package:focus_app/components/left_side_button_collapsed.dart';
 import 'package:provider/provider.dart'; 
 import 'package:focus_app/themes/theme_provider.dart';
 import 'package:window_size/window_size.dart';
@@ -58,12 +57,7 @@ class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
   bool vertical=false; 
 
-  void _incrementCounter() {// dart will bitch if you don't use this method
-    setState(() {
 
-      _counter++;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -84,47 +78,18 @@ class _MyHomePageState extends State<MyHomePage> {
               color: const Color.fromRGBO(39, 39, 39, 1),
               width: double.infinity,
               height: double.infinity,
-              child: RightSide(mode: "small"
-              ),
+              child: RightSide(mode: "small"),
             );
           }
 
           if (constraints.maxWidth < 1077) {
             // Return compact layout
-            return Row(
-            children: [
-              Container(
-                padding: const EdgeInsets.all(4),
-                width: 48,
-                color: const Color.fromRGBO(32, 32, 32, 1),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    LeftSideButtonCollapsed(onPressed: _incrementCounter,  icon: Icons.auto_mode_rounded),
-                    const SizedBox(height: 20),
-                    LeftSideButtonCollapsed(onPressed: _incrementCounter,  icon: Icons.add_box_rounded),
-                    Spacer(),
-                    LeftSideButtonCollapsed(
-                      onPressed: _incrementCounter,
-                      icon: Icons.settings,
-                    ),
-                  ],
-                ),
-              ),
-              Expanded(
-                child: Container(
-                  color: const Color.fromRGBO(39, 39, 39, 1),
-                  child: const Center(
-                    child: Text('Change'),
-                  ),
-                ),
-              ),
-            ],
-          );
-          }
-
-          switch (_counter) {
-            case 1: 
+            return LeftSide(
+              rightSide: RightSide(mode:"compact"),
+              count: _counter, incrementCounter: () {  },
+              width: 48,
+              collapsed: true,
+              );
           }
 
           if (constraints.maxWidth < 1256) {

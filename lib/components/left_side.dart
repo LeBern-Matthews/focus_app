@@ -7,13 +7,14 @@ class LeftSide extends StatelessWidget {
   final int count;
   final VoidCallback  incrementCounter;
   final double width;
-
+  final bool collapsed;
   const LeftSide({
     super.key,
     required this.rightSide,
     required this.count,
     required this.incrementCounter,
     this.width = 280,  // Optional parameter with default value
+    this.collapsed = false, // default value for collapsed
   });
 
   @override
@@ -27,14 +28,15 @@ class LeftSide extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Leftsidebutton(onPressed: incrementCounter, text: "Focus periods", icon: Icons.auto_mode_rounded),
+                    Leftsidebutton(onPressed: incrementCounter, text: "Focus periods", icon: Icons.auto_mode_rounded,collapsed: collapsed,),
                     const SizedBox(height: 20),
-                    Leftsidebutton(onPressed: incrementCounter, text: "$count", icon: Icons.add_box_rounded),
+                    Leftsidebutton(onPressed: incrementCounter, text: "$count", icon: Icons.add_box_rounded,collapsed: collapsed),
                     Spacer(),
                     Leftsidebutton(
                       onPressed: incrementCounter,
                       text: 'Settings',
                       icon: Icons.settings,
+                      collapsed: collapsed
                     ),
                   ],
                 ),
