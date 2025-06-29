@@ -14,7 +14,9 @@ class RightSidecontainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
     return Container(
+
       decoration: BoxDecoration(
         color: const Color.fromRGBO(50, 50, 50, 1),
         borderRadius: BorderRadius.circular(10),
@@ -25,6 +27,7 @@ class RightSidecontainer extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: childList,
+
       ),
     );
   }

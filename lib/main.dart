@@ -84,7 +84,7 @@ class _MyHomePageState extends State<MyHomePage> {
             );
           }
 
-          if (constraints.maxWidth < 1077) {
+          if (constraints.maxWidth < 1068) {
             // Return compact layout
               return LeftSide(
               rightSide: RightSide(mode:"compact", vertical: vertical),

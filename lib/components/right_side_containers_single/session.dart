@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:focus_app/components/right_side_container.dart';
-
+import 'package:focus_app/components/right_side_components/focus_action_button.dart';
 class Session extends StatelessWidget {
   final double width;
   
@@ -31,14 +31,21 @@ class Session extends StatelessWidget {
                       style: TextStyle(
                         color: const Color.fromRGBO(185, 185, 185, 1),
                         fontSize: 14,
-                        
                       ),
                     ),
                   ),
-                  SizedBox(height: 4),
-                  Row(
-
-                  )
+                  SizedBox(height: 20),
+                    Row(
+                      children: [
+                        Text("25"),
+                        Column(
+                          children: [
+                            FocusActionButton(onPressed: (){},width: 48, height:43.2, wchild: Icon(Icons.expand_less)),
+                            FocusActionButton(onPressed: (){}, width:48, height:43.2, wchild: Icon(Icons.expand_more)),
+                          ],
+                        ),
+                      ],
+                    ),
                 ],
               );
   }

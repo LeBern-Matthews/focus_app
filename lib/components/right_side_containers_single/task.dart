@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:focus_app/components/right_side_container.dart';
-
+import 'package:focus_app/components/right_side_components/focus_action_button.dart';
 class Task extends StatelessWidget {
   final double width;
   const Task({
@@ -22,14 +22,20 @@ class Task extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 4),
-                  Text(
-                    "Add tasks and assign them to focus sessions throughout your day.",
-                    style: TextStyle(
-                      color: const Color.fromRGBO(185, 185, 185, 1),
-                      fontSize: 14,
+                  Center(
+                    child: Text(
+                      "Add tasks and assign them to focus sessions throughout your day.",
+                      style: TextStyle(
+                        color: const Color.fromRGBO(185, 185, 185, 1),
+                        fontSize: 14,
+                      ),
                     ),
                   ),
-                  SizedBox(height: 4),
+                  SizedBox(height: 20),
+                  FocusActionButton(onPressed: () {}, wchild: Row(
+                    children: [Icon(Icons.add), Text("Add a task")],
+                  ),)
+
                 ],
               );
   }
