@@ -17,11 +17,13 @@ class RightSide extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Widget compact;
+    Widget flexDefault;
+    Widget dDefault;
+
   if (mode=="small") {
     // small layout which always has a vertical scroll bar
-    return Container(
-      color: const Color.fromRGBO(39, 39, 39, 1),
-      child: SingleChildScrollView(
+    return SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.fromLTRB(12.8, 14.4, 12.8, 51.2),
           child: Column(
@@ -37,79 +39,164 @@ class RightSide extends StatelessWidget {
               ],
             ),
           ),
-        ),
       );
     }
 
   if (mode=="compact"){
-      return Expanded(
-                child: Container(
-                  color: const Color.fromRGBO(39, 39, 39, 1),
-                  child: const Center(
-                    child: Text('Change'),
-                  ),
-                ),
-              );
-  }
+        if (vertical){
+           compact= SingleChildScrollView(child: CompactRightSide());
+        }
+        else{
+           compact= CompactRightSide();
+        }
+        return Expanded(child: compact);
+        }
 
     if (mode=="flexDefault"){
       // the flexible version of the default 
-      return Expanded(
-        child: Container(
-                    padding: const EdgeInsets.fromLTRB(32, 14.4, 32, 51.2),
-                    color: const Color.fromRGBO(39, 39, 39, 1),
-                    child: Row (
-                      children: [
-                        Expanded(
-                          child: Column(
-                             children: [
-                              Session(),
-                              SizedBox(height: 13.6),
-                              Task(),
-                              ],
+      if (vertical){
+          flexDefault =SingleChildScrollView(child: ExpandedDefaultRightSide());
+      }
+      else{
+          flexDefault= ExpandedDefaultRightSide();
+      }
+      return Expanded(child: flexDefault);
+    }
+
+    if (vertical){
+        dDefault =Expanded(child: SingleChildScrollView(child: DefultRightSide()));
+    }
+    else{
+        dDefault= Expanded(child: DefultRightSide());
+    }
+    return dDefault;
+  }
+}
+
+class CompactRightSide extends StatelessWidget {
+  const CompactRightSide({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Container(
+                      color: const Color.fromRGBO(39, 39, 39, 1),
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(12.8, 14.4, 12.8, 51.2),
+                          child: Row (
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Expanded(
+                                child: Column(
+                                   children: [
+                                    Session(width: 575),
+                                    SizedBox(height: 13.6),
+                                    Task(width: 575),
+                                    ],
+                                ),
+                              ),
+                              const SizedBox(width: 13.6),
+                              Expanded(
+                                child: Column(
+                                  children: [
+                                    Progress(width: 575),
+                                    SizedBox(height: 13.6),
+                                    Music(width: 575),
+                                  ],
+                                ),
+                              )
+                            ],
                           ),
                         ),
-                        const SizedBox(width: 13.6),
-                        Expanded(
-                          child: Column(
+          
+                  ),
+      ],
+
+    );
+  }
+}
+
+class ExpandedDefaultRightSide extends StatelessWidget {
+  const ExpandedDefaultRightSide({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Container(
+                        padding: const EdgeInsets.fromLTRB(32, 14.4, 32, 51.2),
+                        color: const Color.fromRGBO(39, 39, 39, 1),
+                        child: Row (
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Expanded(
+                              child: Column(
+                                 children: [
+                                  Session(),
+                                  SizedBox(height: 13.6),
+                                  Task(),
+                                  ],
+                              ),
+                            ),
+                            const SizedBox(width: 13.6),
+                            Expanded(
+                              child: Column(
+                                children: [
+                                  Progress(),
+                                  SizedBox(height: 13.6),
+                                  Music(),
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
+          
+          ),
+      ],
+    );
+  }
+}
+
+class DefultRightSide extends StatelessWidget {
+  const DefultRightSide({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Container(
+                      padding: const EdgeInsets.fromLTRB(32, 14.4, 32, 51.2),
+                      
+                      color: const Color.fromRGBO(39, 39, 39, 1),
+                      child: Row (
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Column(
+                             children: [
+                                Session(),
+                                SizedBox(height: 13.6),
+                                Task(),
+                              ],
+                          ),
+                          const SizedBox(width: 13.6),
+                          Column(
                             children: [
                               Progress(),
                               SizedBox(height: 13.6),
                               Music(),
                             ],
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-      );
-    }
-
-    return Expanded(
-                child: Container(
-                  padding: const EdgeInsets.fromLTRB(32, 14.4, 32, 51.2),
-                  
-                  color: const Color.fromRGBO(39, 39, 39, 1),
-                  child: Row (
-                    children: [
-                      Column(
-                         children: [
-                            Session(),
-                            SizedBox(height: 13.6),
-                            Task(),
-                          ],
-                      ),
-                      const SizedBox(width: 13.6),
-                      Column(
-                        children: [
-                          Progress(),
-                          SizedBox(height: 13.6),
-                          Music(),
+                          )
                         ],
-                      )
-                    ],
-                  ),
-                ),
+                      ),
+                    ),
+      ],
               );
   }
 }

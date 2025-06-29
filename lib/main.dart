@@ -54,10 +54,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  final int _counter = 0;
   bool vertical=false; 
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -66,8 +64,12 @@ class _MyHomePageState extends State<MyHomePage> {
         builder: (context, constraints) {
           
           // check if the height is less than the height 1020
-          if (constraints.maxHeight<1020){
+          if (constraints.maxHeight<770){
             vertical=true;
+          }
+          else
+          {
+            vertical=false;
           }
 
           // Check if window width is less than 600 pixels
@@ -78,33 +80,32 @@ class _MyHomePageState extends State<MyHomePage> {
               color: const Color.fromRGBO(39, 39, 39, 1),
               width: double.infinity,
               height: double.infinity,
-              child: RightSide(mode: "small"),
+              child: RightSide(mode: "small", vertical: vertical,),
             );
           }
 
           if (constraints.maxWidth < 1077) {
             // Return compact layout
-            return LeftSide(
-              rightSide: RightSide(mode:"compact"),
+              return LeftSide(
+              rightSide: RightSide(mode:"compact", vertical: vertical),
               count: _counter, incrementCounter: () {  },
               width: 48,
               collapsed: true,
               );
+            
           }
 
           if (constraints.maxWidth < 1256) {
-            //return RightSide(isVertical: false, isFlexible: true,);
             // return flexible version of the default layout
-
             return LeftSide(count: _counter, incrementCounter: () {  },
-            rightSide: RightSide(mode: "flexDefault"
+            rightSide: RightSide(mode: "flexDefault", vertical: vertical
               ), 
             );
           }
           
           // Return default desktop layout
           return LeftSide(
-            rightSide: RightSide(mode:""),
+            rightSide: RightSide(mode:"", vertical: vertical),
             count: _counter, incrementCounter: () {  },
           );
         },
