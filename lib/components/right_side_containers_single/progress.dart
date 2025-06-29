@@ -12,6 +12,8 @@ class Progress extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RightSidecontainer(
+                height: 309.6,
+                width: width,
                 childList: [
                   Text(
                     'Daily progress',
@@ -23,8 +25,6 @@ class Progress extends StatelessWidget {
                   SizedBox(height: 4),
 
                 ],
-                height: 309.6,
-                width: width,
                 );
   }
 }

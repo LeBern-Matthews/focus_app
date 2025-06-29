@@ -11,6 +11,8 @@ class Music extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RightSidecontainer(
+                  height: 206.4,
+                  width: width,
                   childList: [
                     Text(
                       'Music',
@@ -28,8 +30,7 @@ class Music extends StatelessWidget {
                       ),
                     ),
                   ],
-                  height: 206.4
-                  ,width: width,
+                  
                 );
   }
 }
