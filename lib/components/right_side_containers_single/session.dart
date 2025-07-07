@@ -35,17 +35,21 @@ class Session extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 20),
-                    Row(
-                      children: [
-                        Text("25"),
-                        Column(
-                          children: [
-                            FocusActionButton(onPressed: (){},width: 48, height:43.2, wchild: Icon(Icons.expand_less)),
-                            FocusActionButton(onPressed: (){}, width:48, height:43.2, wchild: Icon(Icons.expand_more)),
-                          ],
-                        ),
-                      ],
-                    ),
+                  Row(
+                    children: [
+                      Text("25"),
+                      Column(
+                        children: [
+                          FocusActionButton(onPressed: (){},width: 48, height:43.2, wchild: Icon(Icons.expand_less)),
+                          FocusActionButton(onPressed: (){}, width:48, height:43.2, wchild: Icon(Icons.expand_more)),
+                        ],
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 30),
+                  FocusActionButton(onPressed: () {},width: 162.4, hoverandFocusColor: Color.fromRGBO(182, 183, 129, 1), backgroundColor:Color.fromRGBO(197, 198, 138, 1),wchild: Row(
+                    children: [Icon(Icons.play_arrow_rounded), Text("Start focus session")],
+                  ),)
                 ],
               );
   }
