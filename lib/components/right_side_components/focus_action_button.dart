@@ -6,6 +6,9 @@ class FocusActionButton extends StatelessWidget {
   final Widget wchild;
   final double width;
   final double height;
+  final Color backgroundColor;
+  final Color focusColor;
+  final Color hoverColor;
 
   const FocusActionButton({
     super.key,
@@ -14,6 +17,9 @@ class FocusActionButton extends StatelessWidget {
     this.wchild=const Icon(Icons.pin_drop_rounded),
     this.width=107.2,
     this.height=32,
+    this.backgroundColor=const Color.fromRGBO(63, 63, 58, 1),
+    this.focusColor=const Color.fromRGBO(68, 68, 63, 1),
+    this.hoverColor=const Color.fromRGBO(68, 68, 63, 1),
   });
 
   @override
@@ -28,9 +34,9 @@ class FocusActionButton extends StatelessWidget {
       height:height,
       child: FloatingActionButton(
         onPressed: onPressed,
-        backgroundColor: const Color.fromRGBO(63, 63, 58, 1),
-        focusColor: const Color.fromRGBO(68, 68, 63, 1),
-        hoverColor: const Color.fromRGBO(68, 68, 63, 1),
+        backgroundColor: backgroundColor ,
+        focusColor:  focusColor,
+        hoverColor: hoverColor ,
         elevation: 0,
         hoverElevation: 0,
         focusElevation: 0,
