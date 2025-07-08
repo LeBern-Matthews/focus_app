@@ -14,6 +14,13 @@ class Task extends StatelessWidget {
                 height: 284.8,
                 width: width,
                 childList: [
+                  Align(
+                  alignment: Alignment.topLeft,
+                  child:Row(
+                    children: [Icon(Icons.check, color: Colors.blue,weight: 100,size:28 ,),SizedBox(width: 10,),Text('Tasks',style: TextStyle(color: const Color.fromRGBO(255, 255, 255, 1),fontSize: 14,),
+                  )],
+                  )
+                  ),
                   Text(
                     'Stay on track',
                     style: TextStyle(
