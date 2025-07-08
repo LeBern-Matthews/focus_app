@@ -15,13 +15,11 @@ class Progress extends StatelessWidget {
                 height: 309.6,
                 width: width,
                 childList: [
-                  Text(
-                    'Daily progress',
-                    style: TextStyle(
-                      color: const Color.fromRGBO(255, 255, 255, 1),
-                      fontSize: 24,
-                    ),
-                  ),
+                  Align(
+                  alignment: Alignment.topLeft,
+                  child:Text('Daily progress',style: TextStyle(color: const Color.fromRGBO(255, 255, 255, 1),fontSize: 14,),
+                  )
+                  ), 
                   SizedBox(height: 4),
                   
                 ],
